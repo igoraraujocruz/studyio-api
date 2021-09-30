@@ -31,7 +31,7 @@
         ],
         "class-methods-use-this": "off",
         "prettier/prettier": "error",
-        "no-useless-constructor": "off"
+        "no-empty-interface": false
     },
     "settings": {
         "import/resolver": {
