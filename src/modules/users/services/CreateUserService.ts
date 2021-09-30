@@ -3,6 +3,7 @@ import User from '@modules/users/infra/typeorm/entities/User';
 import IUsersRepository from '@modules/users/repositories/IUsersRepository';
 import CreateUserDTO from '@modules/users/dtos/CreateUserDTO';
 import AppError from '@shared/errors/AppError';
+import { hash } from 'bcryptjs'
 
 @injectable()
 export default class CreateUserService {
@@ -43,11 +44,13 @@ export default class CreateUserService {
             throw new AppError('This mobile Phone already exist');
         }
 
+        const hashedPassword = await hash(password, 8)
+
         const user = await this.usersRepository.create({
             name,
             email,
             mobilePhone,
-            password,
+            password: hashedPassword,
             username,
         });
 
