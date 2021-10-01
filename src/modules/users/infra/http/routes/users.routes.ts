@@ -48,14 +48,14 @@ usersRouter.put(
 );
 
 usersRouter.get(
-    '/:id',
+    '/',
     ensureAuthenticated,
     celebrate({
-      [Segments.PARAMS]: {
-        id: Joi.string().uuid().required(),
+      [Segments.BODY]: {
+        id: Joi.string().uuid(),
       },
     }),
-    usersController.getOneUser,
+    usersController.get,
 );
 
 export default usersRouter;
