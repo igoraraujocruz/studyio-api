@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import { celebrate, Segments, Joi } from 'celebrate';
 import UsersController from '@modules/users/infra/http/controllers/UsersController';
+import ensureAuthenticated from '../middlewares/ensureAuthenticated';
 
 const usersRouter = Router();
 const usersController = new UsersController();
@@ -17,6 +18,17 @@ usersRouter.post(
         },
     }),
     usersController.create,
+);
+
+usersRouter.delete(
+    '/:id',
+    ensureAuthenticated,
+    celebrate({
+        [Segments.PARAMS]: {
+            id: Joi.string().uuid().required(),
+        },
+    }),
+    usersController.remove,
 );
 
 export default usersRouter;

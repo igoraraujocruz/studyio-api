@@ -32,7 +32,7 @@ export default abstract class BaseRepository<Entity>
   }
 
   async delete(item: Entity): Promise<void> {
-    await this.ormRepository.remove(item);
+    await this.ormRepository.softRemove(item);
   }
 
   async findAll(): Promise<Entity[]> {
