@@ -1,10 +1,11 @@
 import 'reflect-metadata';
+import 'dotenv/config';
+import '@shared/container';
 import express, { Request, Response, NextFunction } from 'express';
 import 'express-async-errors';
-import AppError from '@shared/errors/AppError';
-import routes from '@shared/infra/http/routes';
 import '@shared/infra/typeorm';
-import '@shared/container';
+import routes from '@shared/infra/http/routes';
+import AppError from '@shared/errors/AppError';
 import { isCelebrateError } from 'celebrate';
 
 const app = express();
