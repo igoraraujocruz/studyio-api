@@ -6,7 +6,7 @@ import AppError from '@shared/errors/AppError';
 import { hash } from 'bcryptjs'
 
 @injectable()
-export default class CreateUserService {
+export class CreateUserService {
     constructor(
         @inject('UsersRepository')
         private usersRepository: IUsersRepository,

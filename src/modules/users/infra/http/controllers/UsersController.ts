@@ -1,8 +1,9 @@
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
-import CreateUserService from '@modules/users/services/CreateUserService';
-import DeleteUserService from '@modules/users/services/DeleteUserService';
-import UpdateUserService from '@modules/users/services/UpdateUserService';
+import { CreateUserService } from '@modules/users/services/CreateUserService';
+import { DeleteUserService } from '@modules/users/services/DeleteUserService';
+import { UpdateUserService } from '@modules/users/services/UpdateUserService';
+import { GetOneUserService } from '@modules/users/services/GetOneUserService';
 import { classToClass } from 'class-transformer';
 
 export default class UsersController {
@@ -60,4 +61,13 @@ export default class UsersController {
           return response.status(400).json({ error });
         }
     }
+
+    public async getOneUser(request: Request, response: Response): Promise<Response> {
+        const { id } = request.params;
+        const findUser = container.resolve(GetOneUserService);
+
+        const user = await findUser.findById(id);
+
+        return response.json(classToClass(user));
+      }
 }

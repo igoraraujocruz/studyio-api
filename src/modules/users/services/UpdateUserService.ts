@@ -6,7 +6,7 @@ import { UpdateUserDTO } from '@modules/users/dtos/UpdateUserDTO';
 import AppError from '@shared/errors/AppError';
 
 @injectable()
-export default class UpdateUserService extends BaseService<User> {
+export class UpdateUserService extends BaseService<User> {
   constructor(
     @inject('UsersRepository')
     private usersRepository: IUsersRepository,

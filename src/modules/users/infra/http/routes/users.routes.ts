@@ -45,6 +45,17 @@ usersRouter.put(
       },
     }),
     usersController.update,
-  );
+);
+
+usersRouter.get(
+    '/:id',
+    ensureAuthenticated,
+    celebrate({
+      [Segments.PARAMS]: {
+        id: Joi.string().uuid().required(),
+      },
+    }),
+    usersController.getOneUser,
+);
 
 export default usersRouter;
