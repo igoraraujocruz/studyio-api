@@ -31,4 +31,20 @@ usersRouter.delete(
     usersController.remove,
 );
 
+usersRouter.put(
+    '/',
+    ensureAuthenticated,
+    celebrate({
+      [Segments.BODY]: {
+        id: Joi.string().uuid().required(),
+        name: Joi.string().required(),
+        username: Joi.string().required(),
+        email: Joi.string().email().required(),
+        password: Joi.string().min(5).required(),
+        mobilePhone: Joi.string().max(13).required(),
+      },
+    }),
+    usersController.update,
+  );
+
 export default usersRouter;
