@@ -5,12 +5,12 @@ import { classToClass } from 'class-transformer';
 
 export default class SessionsController {
   public async handle(request: Request, response: Response): Promise<Response> {
-    const { username, password } = request.body;
+    const { email, password } = request.body;
 
     const authController = container.resolve(AuthenticateUserService);
 
     const { user, token } = await authController.execute({
-      username,
+      email,
       password,
     });
 

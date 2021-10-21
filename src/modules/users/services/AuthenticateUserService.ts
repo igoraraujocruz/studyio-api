@@ -7,7 +7,7 @@ import authConfig from '@config/auth';
 
 
 interface Request {
-	username: string;
+	email: string;
 	password: string;
 }
 
@@ -17,11 +17,11 @@ interface Response {
 }
 
 export class AuthenticateUserService {
-	public async execute({ username, password }: Request): Promise<Response> {
+	public async execute({ email, password }: Request): Promise<Response> {
 		const usersRepository = getRepository(User);
 
 		const user = await usersRepository.findOne({
-			where: { username }
+			where: { email }
 		});
 		if (!user) {
 			throw new AppError('name or password invalid.');
