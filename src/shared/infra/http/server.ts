@@ -4,8 +4,8 @@ import '@shared/container';
 import express, { Request, Response, NextFunction } from 'express';
 import 'express-async-errors';
 import '@shared/infra/typeorm';
-import routes from '@shared/infra/http/routes';
-import AppError from '@shared/errors/AppError';
+import { routes } from '@shared/infra/http/routes';
+import { AppError } from '@shared/errors/AppError';
 import { isCelebrateError } from 'celebrate';
 import cors from 'cors';
 

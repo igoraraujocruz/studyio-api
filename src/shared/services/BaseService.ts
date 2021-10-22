@@ -1,4 +1,4 @@
-import AppError from '@shared/errors/AppError';
+import { AppError } from '@shared/errors/AppError';
 
 import { ObjectLiteral } from 'typeorm';
 import { IBaseRepository } from '@shared/repositories/IBaseRepository';
@@ -10,7 +10,7 @@ interface IEntity {
 }
 interface IStandardProps extends IEntity, ObjectLiteral {}
 
-export default abstract class BaseService<Entity extends IStandardProps>
+export abstract class BaseService<Entity extends IStandardProps>
     implements IBaseService<Entity>
 {
     constructor(private ormRepository: IBaseRepository<Entity>) {}

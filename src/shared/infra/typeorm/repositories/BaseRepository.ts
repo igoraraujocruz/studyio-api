@@ -1,5 +1,5 @@
 import { Repository } from 'typeorm';
-import AppError from '@shared/errors/AppError';
+import { AppError } from '@shared/errors/AppError';
 import { IBaseRepository } from '@shared/repositories/IBaseRepository';
 
 export default abstract class BaseRepository<Entity>
