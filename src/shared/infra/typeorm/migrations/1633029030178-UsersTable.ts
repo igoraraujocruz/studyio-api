@@ -18,17 +18,8 @@ export default class UsersTable1633029030178 implements MigrationInterface {
                         type: 'varchar',
                     },
                     {
-                        name: 'username',
-                        type: 'varchar',
-                    },
-                    {
                         name: 'email',
                         type: 'varchar',
-                    },
-                    {
-                        name: 'mobilePhone',
-                        type: 'varchar',
-                        length: '13',
                     },
                     {
                         name: 'password',

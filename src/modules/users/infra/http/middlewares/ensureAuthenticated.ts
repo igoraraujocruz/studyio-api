@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import { verify } from 'jsonwebtoken';
 import authConfig from '@config/auth';
-import AppError from '@shared/errors/AppError';
+import { AppError } from '@shared/errors/AppError';
 
 interface ITokenPayLoad {
   iat: number;
@@ -9,7 +9,7 @@ interface ITokenPayLoad {
   sub: string;
 }
 
-export default function ensureAuthenticated(
+export function ensureAuthenticated(
   request: Request,
   _: Response,
   next: NextFunction,

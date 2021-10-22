@@ -2,7 +2,7 @@ import { Router } from 'express';
 import { celebrate, Segments, Joi } from 'celebrate';
 import SessionsController from '@modules/users/infra/http/controllers/SessionsController';
 
-const sessionsRouter = Router();
+export const sessionsRouter = Router();
 const sessionsController = new SessionsController();
 
 sessionsRouter.post(
@@ -15,5 +15,3 @@ sessionsRouter.post(
   }),
   sessionsController.handle,
 );
-
-export default sessionsRouter;

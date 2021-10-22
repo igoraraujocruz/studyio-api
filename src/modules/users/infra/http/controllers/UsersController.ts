@@ -3,24 +3,22 @@ import { container } from 'tsyringe';
 import { CreateUserService } from '@modules/users/services/CreateUserService';
 import { DeleteUserService } from '@modules/users/services/DeleteUserService';
 import { UpdateUserService } from '@modules/users/services/UpdateUserService';
-import { GetUserService } from '@modules/users/services/GetUserService';
+import { ListUsersService } from '@modules/users/services/ListUsersService';
 import { classToClass } from 'class-transformer';
 
-export default class UsersController {
+export class UsersController {
     public async create(
         request: Request,
         response: Response,
     ): Promise<Response> {
-        const { name, username, password, email, mobilePhone } = request.body;
+        const { name, password, email} = request.body;
 
         const createUser = container.resolve(CreateUserService);
 
         const user = await createUser.execute({
             name,
-            username,
             password,
             email,
-            mobilePhone,
         });
 
         return response.status(200).json(classToClass(user));
@@ -43,16 +41,14 @@ export default class UsersController {
     public async update(request: Request, response: Response): Promise<Response> {
         try {
 
-          const { id, name, username, email, mobilePhone, password } = request.body;
+          const { id, name, email, password } = request.body;
 
           const updateUser = container.resolve(UpdateUserService);
 
           const userUpdated = await updateUser.update({
-              userId: id,
+              id,
               name,
-              username,
               email,
-              mobilePhone,
               password
           });
 
@@ -62,9 +58,9 @@ export default class UsersController {
         }
     }
 
-    public async get(request: Request, response: Response): Promise<Response> {
+    public async list(request: Request, response: Response): Promise<Response> {
         const { id } = request.body;
-        const findUser = container.resolve(GetUserService);
+        const findUser = container.resolve(ListUsersService);
 
         const user = await findUser.execute(id);
 

@@ -9,7 +9,7 @@ import {
 import { Exclude } from 'class-transformer';
 
 @Entity('users')
-export default class User {
+export class User {
     @PrimaryGeneratedColumn('uuid')
     id: string;
 
@@ -17,17 +17,11 @@ export default class User {
     name: string;
 
     @Column()
-    username: string;
-
-    @Column()
     @Exclude()
     password: string;
 
     @Column()
     email: string;
-
-    @Column()
-    mobilePhone: string;
 
     @CreateDateColumn()
     createdAt: Date;

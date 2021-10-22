@@ -1,8 +1,5 @@
-export default interface UserDTO {
-    id?: string;
+export interface CreateUserDTO {
     name: string;
-    username: string;
     password: string;
     email: string;
-    mobilePhone: string;
 }
