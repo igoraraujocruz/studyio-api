@@ -1,9 +1,9 @@
 import { inject, injectable } from 'tsyringe';
-import BaseService from '@shared/services/BaseService';
+import { BaseService } from '@shared/services/BaseService';
 import { Module } from '@modules/modules/infra/typeorm/entities/Module';
 import {IModulesRepository} from '@modules/modules/repositories/IModulesRepository';
 import { UpdateModuleDTO } from '@modules/modules/dtos/UpdateModuleDTO';
-import AppError from '@shared/errors/AppError';
+import { AppError } from '@shared/errors/AppError';
 
 @injectable()
 export class UpdateModuleService extends BaseService<Module> {

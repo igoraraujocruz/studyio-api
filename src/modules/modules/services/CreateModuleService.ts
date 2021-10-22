@@ -2,7 +2,7 @@ import { inject, injectable } from 'tsyringe';
 import { Module } from '@modules/modules/infra/typeorm/entities/Module';
 import { IModulesRepository } from '@modules/modules/repositories/IModulesRepository';
 import { CreateModuleDTO } from '@modules/modules/dtos/CreateModuleDTO';
-import AppError from '@shared/errors/AppError';
+import { AppError } from '@shared/errors/AppError';
 
 @injectable()
 export class CreateModuleService {
