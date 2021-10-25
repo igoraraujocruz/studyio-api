@@ -14,6 +14,7 @@ lessonsRouter.post(
             name: Joi.string().required(),
             date: Joi.date().required(),
             moduleId: Joi.string().required(),
+            description: Joi.string(),
         },
     }),
     lessonsController.create,
@@ -39,13 +40,18 @@ lessonsRouter.put(
         name: Joi.string().required(),
         date: Joi.date().required(),
         moduleId: Joi.string().required(),
+        description: Joi.string(),
       },
     }),
     lessonsController.update,
 );
 
 lessonsRouter.get(
-    '/',
-    ensureAuthenticated,
+    '/:id?',
+    celebrate({
+      [Segments.PARAMS]: {
+        id: Joi.string().uuid(),
+      },
+    }),
     lessonsController.list,
-);
+);;

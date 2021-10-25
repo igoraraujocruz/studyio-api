@@ -18,6 +18,9 @@ export class Module {
     @Column()
     name: string;
 
+    @Column()
+    description: string;
+
     @OneToMany(() => Lesson, lessons => lessons.module, {
     eager: true,
     })

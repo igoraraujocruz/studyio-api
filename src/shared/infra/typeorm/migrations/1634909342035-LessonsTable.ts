@@ -19,6 +19,11 @@ export default class LessonsTable1634909342035 implements MigrationInterface {
                 type: 'varchar',
               },
               {
+                name: 'description',
+                type: 'varchar',
+                isNullable: true,
+              },
+              {
                 name: 'moduleId',
                 type: 'uuid',
               },

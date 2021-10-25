@@ -9,9 +9,19 @@ export class ListLessonsServices {
     private lessonsRepository: ILessonsRepository,
   ) {}
 
-  public async execute(): Promise<Lesson[]> {
-    const lessons = await this.lessonsRepository.findAll();
+  public async execute(id?: string): Promise<Lesson[]> {
 
-    return lessons;
+    if(id) {
+       const lessons = await this.lessonsRepository.findByModule(id)
+
+       if (!lessons) {
+           throw new AppError('Lesson not found')
+       }
+
+       return lessons;
+    }
+    const Alllessons = await this.lessonsRepository.findAll();
+
+    return Alllessons;
   }
 }

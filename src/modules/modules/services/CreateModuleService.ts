@@ -13,6 +13,7 @@ export class CreateModuleService {
 
     public async execute({
         name,
+        description
     }: CreateModuleDTO): Promise<Module> {
 
         const moduleExist = await this.modulesRepository.findByName(name)
@@ -23,6 +24,7 @@ export class CreateModuleService {
 
         const module = await this.modulesRepository.create({
             name,
+            description
         });
 
         return module;

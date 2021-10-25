@@ -20,6 +20,9 @@ export class Lesson {
     name: string;
 
     @Column()
+    description: string;
+
+    @Column()
     moduleId: string;
 
     @ManyToOne(() => Module, module => module.lessons)

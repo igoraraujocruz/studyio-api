@@ -3,4 +3,5 @@ export interface UpdateLessonDTO {
     name: string;
     moduleId: string;
     date: Date;
+    description: string;
 }

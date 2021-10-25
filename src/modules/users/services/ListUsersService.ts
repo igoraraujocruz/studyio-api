@@ -28,5 +28,5 @@ export class ListUsersService extends BaseService<User> {
     const users = await this.usersRepository.findAll()
 
     return users;
-}
+  }
 }

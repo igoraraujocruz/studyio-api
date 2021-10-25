@@ -12,6 +12,7 @@ modulesRouter.post(
     celebrate({
         [Segments.BODY]: {
             name: Joi.string().required(),
+            description: Joi.string(),
         },
     }),
     modulesController.create,
@@ -35,13 +36,18 @@ modulesRouter.put(
       [Segments.BODY]: {
         id: Joi.string().uuid().required(),
         name: Joi.string().required(),
+        description: Joi.string(),
       },
     }),
     modulesController.update,
 );
 
 modulesRouter.get(
-    '/',
-    ensureAuthenticated,
+    '/:id?',
+    celebrate({
+      [Segments.PARAMS]: {
+        id: Joi.string().uuid(),
+      },
+    }),
     modulesController.list,
 );

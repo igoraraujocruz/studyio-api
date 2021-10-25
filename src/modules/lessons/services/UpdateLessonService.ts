@@ -17,7 +17,8 @@ export class UpdateLessonService extends BaseService<Lesson> {
   public async update({
     id,
     name,
-    date
+    date,
+    description
   }: UpdateLessonDTO): Promise<Lesson> {
 
     const lesson = await this.lessonsRepository.findById(id);
@@ -34,6 +35,7 @@ export class UpdateLessonService extends BaseService<Lesson> {
 
     lesson.name = name;
     lesson.date = date;
+    lesson.description = description;
 
     return this.lessonsRepository.save(lesson);
   }

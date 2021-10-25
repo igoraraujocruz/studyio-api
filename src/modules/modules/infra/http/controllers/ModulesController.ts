@@ -11,12 +11,13 @@ export class ModulesController {
         request: Request,
         response: Response,
     ): Promise<Response> {
-        const { name } = request.body;
+        const { name, description } = request.body;
 
         const createModule = container.resolve(CreateModuleService);
 
         const module = await createModule.execute({
-            name
+            name,
+            description
         });
 
         return response.status(200).json(classToClass(module));
@@ -39,13 +40,14 @@ export class ModulesController {
     public async update(request: Request, response: Response): Promise<Response> {
         try {
 
-          const { id, name } = request.body;
+          const { id, name, description } = request.body;
 
           const updateModule = container.resolve(UpdateModuleService);
 
           const moduleUpdated = await updateModule.update({
               id,
-              name
+              name,
+              description
           });
 
           return response.json(classToClass(moduleUpdated));
@@ -55,8 +57,9 @@ export class ModulesController {
     }
 
     public async list(request: Request, response: Response): Promise<Response> {
+        const { id } = request.params;
         const listModules = container.resolve(ListModulesServices)
-        const modules = await listModules.execute();
+        const modules = await listModules.execute(id);
 
         return response.json(classToClass(modules));
       }

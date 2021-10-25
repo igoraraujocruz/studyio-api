@@ -14,7 +14,8 @@ export class CreateLessonService {
     public async execute({
         name,
         date,
-        moduleId
+        moduleId,
+        description
     }: CreateLessonDTO): Promise<Lesson> {
 
         const lessonExist = await this.lessonsRepository.findByName(name)
@@ -26,7 +27,8 @@ export class CreateLessonService {
         const lesson = await this.lessonsRepository.create({
             name,
             date,
-            moduleId
+            moduleId,
+            description
         });
 
         return lesson;

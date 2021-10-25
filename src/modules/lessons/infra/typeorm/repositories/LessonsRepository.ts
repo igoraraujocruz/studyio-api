@@ -19,4 +19,13 @@ export class LessonsRepository extends BaseRepository<Lesson> implements ILesson
 
         return item;
     }
+
+     public async findByModule(moduleId: string): Promise<Lesson[] | undefined> {
+        const item = this.ormRepository.find({
+            where: { moduleId },
+            relation: ['moduleId']
+        });
+
+        return item;
+    }
 }

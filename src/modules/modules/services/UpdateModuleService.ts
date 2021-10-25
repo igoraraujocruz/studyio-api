@@ -17,6 +17,7 @@ export class UpdateModuleService extends BaseService<Module> {
   public async update({
     id,
     name,
+    description
   }: UpdateModuleDTO): Promise<Module> {
 
     const module = await this.modulesRepository.findById(id);
@@ -32,6 +33,7 @@ export class UpdateModuleService extends BaseService<Module> {
     }
 
     module.name = name;
+    module.description = description;
 
     return this.modulesRepository.save(module);
   }

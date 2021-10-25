@@ -18,6 +18,11 @@ export default class ModulesTable1634867792415 implements MigrationInterface {
                         name: 'name',
                         type: 'varchar',
                     },
+                     {
+                        name: 'description',
+                        type: 'varchar',
+                        isNullable: true,
+                    },
                     {
                         name: 'createdAt',
                         type: 'timestamp',

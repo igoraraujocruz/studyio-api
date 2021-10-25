@@ -11,7 +11,7 @@ export class LessonsController {
         request: Request,
         response: Response,
     ): Promise<Response> {
-        const { name, date, moduleId } = request.body;
+        const { name, date, moduleId, description } = request.body;
 
         const createLesson = container.resolve(CreateLessonService);
 
@@ -19,6 +19,7 @@ export class LessonsController {
             name,
             moduleId,
             date,
+            description,
         });
 
         return response.status(200).json(classToClass(lesson));
@@ -41,7 +42,7 @@ export class LessonsController {
     public async update(request: Request, response: Response): Promise<Response> {
         try {
 
-          const { id, name, date, moduleId } = request.body;
+          const { id, name, date, moduleId, description } = request.body;
 
           const updateLesson = container.resolve(UpdateLessonService);
 
@@ -49,7 +50,8 @@ export class LessonsController {
               id,
               name,
               date,
-              moduleId
+              moduleId,
+              description,
           });
 
           return response.json(classToClass(lessonUpdated));
@@ -59,8 +61,9 @@ export class LessonsController {
     }
 
     public async list(request: Request, response: Response): Promise<Response> {
+        const { id } = request.params;
         const listLessons = container.resolve(ListLessonsServices)
-        const lessons = await listLessons.execute();
+        const lessons = await listLessons.execute(id);
 
         return response.json(classToClass(lessons));
       }
