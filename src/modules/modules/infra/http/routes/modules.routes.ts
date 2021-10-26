@@ -30,13 +30,13 @@ modulesRouter.delete(
 );
 
 modulesRouter.put(
-    '/',
+    '/:id',
     ensureAuthenticated,
     celebrate({
       [Segments.BODY]: {
         id: Joi.string().uuid().required(),
         name: Joi.string().required(),
-        description: Joi.string(),
+        description: Joi.string().optional().allow(''),
       },
     }),
     modulesController.update,

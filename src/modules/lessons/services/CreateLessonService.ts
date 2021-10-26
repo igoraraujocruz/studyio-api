@@ -18,12 +18,6 @@ export class CreateLessonService {
         description
     }: CreateLessonDTO): Promise<Lesson> {
 
-        const lessonExist = await this.lessonsRepository.findByName(name)
-
-        if(lessonExist) {
-            throw new AppError('This lesson already exist')
-        }
-
         const lesson = await this.lessonsRepository.create({
             name,
             date,

@@ -10,8 +10,8 @@ export class ListModulesServices {
     private modulesRepository: IModulesRepository,
   ) {}
 
-  public async execute(id?: string): Promise<Module[]> {
-    
+  public async execute(id?: string): Promise<Module[] | Module> {
+
     if(id) {
        const modules = await this.modulesRepository.findById(id)
 

@@ -39,8 +39,8 @@ export class ModulesController {
 
     public async update(request: Request, response: Response): Promise<Response> {
         try {
-
-          const { id, name, description } = request.body;
+          const { id } = request.params;
+          const { name, description } = request.body;
 
           const updateModule = container.resolve(UpdateModuleService);
 
