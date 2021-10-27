@@ -41,7 +41,9 @@ export class UsersController {
     public async update(request: Request, response: Response): Promise<Response> {
         try {
 
-          const { id, name, email, password } = request.body;
+          const { id } = request.params;
+
+          const { name, email, password } = request.body;
 
           const updateUser = container.resolve(UpdateUserService);
 
@@ -59,7 +61,7 @@ export class UsersController {
     }
 
     public async list(request: Request, response: Response): Promise<Response> {
-        const { id } = request.body;
+        const { id } = request.params;
         const findUser = container.resolve(ListUsersService);
 
         const user = await findUser.execute(id);

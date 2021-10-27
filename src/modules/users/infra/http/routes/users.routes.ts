@@ -30,11 +30,13 @@ usersRouter.delete(
 );
 
 usersRouter.put(
-    '/',
+    '/:id',
     ensureAuthenticated,
     celebrate({
+      [Segments.PARAMS]: {
+        id: Joi.string().uuid().required()
+      },
       [Segments.BODY]: {
-        id: Joi.string().uuid().required(),
         name: Joi.string().required(),
         email: Joi.string().email().required(),
         password: Joi.string().min(5).required(),
@@ -44,10 +46,10 @@ usersRouter.put(
 );
 
 usersRouter.get(
-    '/',
+    '/:id?',
     ensureAuthenticated,
     celebrate({
-      [Segments.BODY]: {
+      [Segments.PARAMS]: {
         id: Joi.string().uuid(),
       },
     }),

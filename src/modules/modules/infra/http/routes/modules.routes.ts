@@ -33,8 +33,10 @@ modulesRouter.put(
     '/:id',
     ensureAuthenticated,
     celebrate({
-      [Segments.BODY]: {
+      [Segments.PARAMS]: {
         id: Joi.string().uuid().required(),
+      },
+      [Segments.BODY]: {
         name: Joi.string().required(),
         description: Joi.string().optional().allow(''),
       },

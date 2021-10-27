@@ -35,8 +35,10 @@ lessonsRouter.put(
     '/:id',
     ensureAuthenticated,
     celebrate({
-      [Segments.BODY]: {
+      [Segments.PARAMS]: {
         id: Joi.string().uuid().required(),
+      },
+      [Segments.BODY]: {
         name: Joi.string().required(),
         date: Joi.date().required(),
         moduleName: Joi.string().required(),

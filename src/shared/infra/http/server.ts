@@ -8,9 +8,12 @@ import { routes } from '@shared/infra/http/routes';
 import { AppError } from '@shared/errors/AppError';
 import { isCelebrateError } from 'celebrate';
 import cors from 'cors';
+import swaggerUi from 'swagger-ui-express';
+import swaggerFile from '../../../../swagger.json';
 
 const app = express();
 app.use(express.json());
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerFile))
 app.use(cors({
     origin: 'http://localhost:3000'
 }))

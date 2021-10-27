@@ -1,0 +1,818 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+	    "title": "StudyIo Documentation",
+		"description": "Plataform for students",
+		"version": "1.0.0",
+		"contact": {
+		    "email": "igoraraujocruzz@gmail.com"
+		}
+	},
+	"paths": {
+        "/users/": {
+            "post": {
+				"tags": ["User"],
+				"summary": "Create a user",
+				"description": "Create a new user",
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"type": "object",
+								"properties": {
+									"name": {
+										"type": "string"
+									},
+									"password": {
+										"type": "string"
+									},
+                                    "email": {
+										"type": "string"
+									}
+								},
+								"example": {
+									"name": "Joe Doe",
+									"password": "123456",
+                                    "email": "joedoe@gmail.com"
+								}
+							}
+						}
+					}
+				},
+				"responses": {
+					"201": {
+						"description": "Created"
+					},
+					"500": {
+						"description": "User already exists"
+					}
+				}
+			},
+            "get": {
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "tags": ["User"],
+                "summary": "List all users",
+                "description": "List all users",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "id": {
+                                                "type": "string"
+                                            },
+                                            "name": {
+                                                "type": "string"
+                                            },
+                                            "email": {
+                                                "type": "string"
+                                            },
+                                            "createdAt": {
+                                                "type":"string"
+                                            },
+                                            "updatedAt": {
+                                                "type":"string"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/users/{id}": {
+            "get": {
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "tags": ["User"],
+                "summary": "List one user",
+                "description": "List one user",
+                "parameters": [{
+                    "in": "path",
+                    "name": "id",
+                    "type": "string",
+                    "required": true
+                }],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "id": {
+                                                "type": "string"
+                                            },
+                                            "name": {
+                                                "type": "string"
+                                            },
+                                            "email": {
+                                                "type": "string"
+                                            },
+                                            "createdAt": {
+                                                "type":"string"
+                                            },
+                                            "updatedAt": {
+                                                "type":"string"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "tags": ["User"],
+                "summary": "Update user",
+                "description": "Update user",
+                "parameters": [{
+                    "in": "path",
+                    "name": "id",
+                    "type": "string",
+                    "required": true
+                }],
+                "requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"type": "object",
+								"properties": {
+									"name": {
+										"type": "string"
+									},
+									"password": {
+										"type": "string"
+									},
+                                    "email": {
+										"type": "string"
+									}
+								},
+								"example": {
+									"name": "João da Silva",
+									"password": "1234567",
+                                    "email": "joao@gmail.com"
+								}
+							}
+						}
+					}
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "id": {
+                                                "type": "string"
+                                            },
+                                            "name": {
+                                                "type": "string"
+                                            },
+                                            "email": {
+                                                "type": "string"
+                                            },
+                                            "createdAt": {
+                                                "type":"string"
+                                            },
+                                            "updatedAt": {
+                                                "type":"string"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "tags": ["User"],
+                "summary": "Delete user by Id",
+                "description": "Delete one user by Id",
+                "parameters": [{
+                    "in": "path",
+                    "name": "id",
+                    "type": "string",
+                    "required": true
+                }],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        },
+        "/sessions/": {
+            "post": {
+				"tags": ["User"],
+				"summary": "Authenticate user",
+				"description": "Authenticate user",
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"type": "object",
+								"properties": {
+									"email": {
+										"type": "string"
+									},
+									"password": {
+										"type": "string"
+									}
+								},
+								"example": {
+									"email": "joedoe@gmail.com",
+									"password": "123456"
+								}
+							}
+						}
+					}
+				},
+				"responses": {
+					"201": {
+						"description": "Authenticated"
+					},
+					"500": {
+						"description": "User not exist"
+					}
+				}
+			}
+        },
+		"/modules/": {
+			"post": {
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+				"tags": ["Module"],
+				"summary": "Create a module",
+				"description": "Create a new module",
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"type": "object",
+								"properties": {
+									"name": {
+										"type": "string"
+									},
+									"description": {
+										"type": "string"
+									}
+								},
+								"example": {
+									"name": "module name sample",
+									"description": "Module description sample"
+								}
+							}
+						}
+					}
+				},
+				"responses": {
+					"201": {
+						"description": "Created"
+					},
+					"500": {
+						"description": "Module already exists"
+					}
+				}
+			},
+            "get": {
+                "tags": ["Module"],
+                "summary": "List all modules",
+                "description": "List all modules",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "id": {
+                                                "type": "string"
+                                            },
+                                            "name": {
+                                                "type": "string"
+                                            },
+                                            "description": {
+                                                "type": "string"
+                                            },
+                                            "createdAt": {
+                                                "type":"string"
+                                            },
+                                            "updatedAt": {
+                                                "type":"string"
+                                            },
+                                            "lessons": {
+                                                "type":"array",
+                                                "items": {
+                                                    "type":"object",
+                                                    "properties": {
+                                                        "id": {
+                                                            "type": "string"
+                                                        },
+                                                        "name": {
+                                                            "type": "string"
+                                                        },
+                                                        "description": {
+                                                            "type": "string"
+                                                        },
+                                                        "moduleId": {
+                                                            "type": "string"
+                                                        },
+                                                        "date": {
+                                                            "type": "string"
+                                                        },
+                                                        "createdAt": {
+                                                            "type":"string"
+                                                        },
+                                                        "updatedAt": {
+                                                            "type":"string"
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/modules/{id}": {
+            "get": {
+                "tags": ["Module"],
+                "summary": "List module by Id",
+                "description": "List one module by Id",
+                "parameters": [{
+                    "in": "path",
+                    "name": "id",
+                    "type": "string",
+                    "required": true
+                }],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "id": {
+                                                "type": "string"
+                                            },
+                                            "name": {
+                                                "type": "string"
+                                            },
+                                            "description": {
+                                                "type": "string"
+                                            },
+                                            "createdAt": {
+                                                "type":"string"
+                                            },
+                                            "updatedAt": {
+                                                "type":"string"
+                                            },
+                                            "lessons": {
+                                                "type":"array",
+                                                "items": {
+                                                    "type":"object",
+                                                    "properties": {
+                                                        "id": {
+                                                            "type": "string"
+                                                        },
+                                                        "name": {
+                                                            "type": "string"
+                                                        },
+                                                        "description": {
+                                                            "type": "string"
+                                                        },
+                                                        "moduleId": {
+                                                            "type": "string"
+                                                        },
+                                                        "date": {
+                                                            "type": "string"
+                                                        },
+                                                        "createdAt": {
+                                                            "type":"string"
+                                                        },
+                                                        "updatedAt": {
+                                                            "type":"string"
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "tags": ["Module"],
+                "summary": "Update module by Id",
+                "description": "Update one module by Id",
+                "parameters": [{
+                    "in": "path",
+                    "name": "id",
+                    "type": "string",
+                    "required": true
+                }],
+                "requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"type": "object",
+								"properties": {
+									"name": {
+										"type": "string"
+									},
+									"description": {
+										"type": "string"
+									}
+								},
+								"example": {
+									"name": "Javascript",
+									"description": "The best language... or not, you decide"
+								}
+							}
+						}
+					}
+				},
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "id": {
+                                                "type": "string"
+                                            },
+                                            "name": {
+                                                "type": "string"
+                                            },
+                                            "description": {
+                                                "type": "string"
+                                            },
+                                            "lessons": {
+                                                "type":"array",
+                                                "items": {
+                                                    "type":"object",
+                                                    "properties": {
+                                                        "id": {
+                                                            "type": "string"
+                                                        },
+                                                        "name": {
+                                                            "type": "string"
+                                                        },
+                                                        "description": {
+                                                            "type": "string"
+                                                        },
+                                                        "moduleId": {
+                                                            "type": "string"
+                                                        },
+                                                        "date": {
+                                                            "type": "string"
+                                                        },
+                                                        "createdAt": {
+                                                            "type":"string"
+                                                        },
+                                                        "updatedAt": {
+                                                            "type":"string"
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "tags": ["Module"],
+                "summary": "Delete module by Id",
+                "description": "Delete one module by Id",
+                "parameters": [{
+                    "in": "path",
+                    "name": "id",
+                    "type": "string",
+                    "required": true
+                }],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        },
+        "/lessons/": {
+			"post": {
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+				"tags": ["Lesson"],
+				"summary": "Create Lesson",
+				"description": "Create a new lesson",
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"type": "object",
+								"properties": {
+									"id": {
+                                        "type":"string"
+                                    },
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "moduleId": {
+                                        "type": "string"
+                                    },
+                                    "date": {
+                                        "type": "string"
+                                    },
+                                    "createdAt": {
+                                        "type": "string"
+                                    },
+                                    "updatedAt": {
+                                        "type": "string"
+                                    }
+								},
+								"example": {
+									"name": "module name sample",
+									"description": "Module description sample",
+                                    "date": "2021-10-27T06:50:49.037Z",
+                                    "moduleName": "module name that already exists"
+								}
+							}
+						}
+					}
+				},
+				"responses": {
+					"201": {
+						"description": "Created"
+					},
+					"500": {
+						"description": "Module already exists"
+					}
+				}
+			},
+            "get": {
+                "tags": ["Lesson"],
+                "summary": "List all lessons",
+                "description": "List all lessons",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "id": {
+                                                "type":"string"
+                                            },
+                                            "name": {
+                                                "type": "string"
+                                            },
+                                            "moduleId": {
+                                                "type": "string"
+                                            },
+                                            "date": {
+                                                "type": "string"
+                                            },
+                                            "createdAt": {
+                                                "type": "string"
+                                            },
+                                            "updatedAt": {
+                                                "type": "string"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/lessons/{id}": {
+            "get": {
+                "tags": ["Lesson"],
+                "summary": "List lesson by Id",
+                "description": "List one lesson by Id",
+                "parameters": [{
+                    "in": "path",
+                    "name": "id",
+                    "type": "string",
+                    "required": true
+                }],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "id": {
+                                                "type":"string"
+                                            },
+                                            "name": {
+                                                "type": "string"
+                                            },
+                                            "moduleId": {
+                                                "type": "string"
+                                            },
+                                            "date": {
+                                                "type": "string"
+                                            },
+                                            "createdAt": {
+                                                "type": "string"
+                                            },
+                                            "updatedAt": {
+                                                "type": "string"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "tags": ["Lesson"],
+                "summary": "Update lesson by Id",
+                "description": "Update one lesson by Id",
+                "parameters": [{
+                    "in": "path",
+                    "name": "id",
+                    "type": "string",
+                    "required": true
+                }],
+                "requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"type": "object",
+								"properties": {
+									"name": {
+										"type": "string"
+									},
+									"moduleName": {
+										"type": "string"
+									},
+                                    "date": {
+										"type": "string"
+									}
+								},
+								"example": {
+									"name": "variáveis",
+									"moduleName": "module name that already exists",
+                                    "date": "2020-06-18 15:00:00"
+								}
+							}
+						}
+					}
+				},
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "id": {
+                                                "type":"string"
+                                            },
+                                            "name": {
+                                                "type": "string"
+                                            },
+                                            "moduleId": {
+                                                "type": "string"
+                                            },
+                                            "date": {
+                                                "type": "string"
+                                            },
+                                            "createdAt": {
+                                                "type": "string"
+                                            },
+                                            "updatedAt": {
+                                                "type": "string"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "tags": ["Lesson"],
+                "summary": "Delete lesson by Id",
+                "description": "Delete one lesson by Id",
+                "parameters": [{
+                    "in": "path",
+                    "name": "id",
+                    "type": "string",
+                    "required": true
+                }],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        }
+	},
+    "components": {
+        "securitySchemes": {
+          "bearerAuth": {
+            "type": "http",
+            "scheme": "bearer",
+            "bearerFormat": "JWT"
+          }
+        }
+    }
+}
