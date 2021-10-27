@@ -24,10 +24,9 @@
 </p>
 
 <p align="center">
-  <a href="#%EF%B8%8F-about-the-project">About the project</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#-technologies">Technologies</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#-getting-started">Getting started</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#-how-to-contribute">How to contribute</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-sobre-o-projeto">Sobre o Projeto</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-tecnologias">Tecnologias</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-como-começar">Como começar</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#-license">License</a>
 </p>
 
@@ -43,9 +42,9 @@ API para criar, editar, deletar e buscar usuários, módulos e aulas cadastradas
 Acesse o **cliente web** dessa API clicando aqui: [StudyIo Web](https://github.com/igoraraujocruz/studyio-web)<br />
 
 
-## 🚀 Técnologias
+## 🚀 Tecnologias
 
-Técnologias que foram usadas para desenvolver esta API:
+Tecnologias que foram usadas para desenvolver esta API:
 
 - [Node.js](https://nodejs.org/en/)
 - [TypeScript](https://www.typescriptlang.org/)
@@ -64,7 +63,7 @@ Técnologias que foram usadas para desenvolver esta API:
 - [EditorConfig](https://editorconfig.org/)
 
 ## 💻 Como começar
-Há duas formas de instaar tudo que for necessário para o projeto, a primeira é de forma automática e a segunda é manualmente.
+Há duas formas de instalar tudo que é necessário para o projeto. A primeira de forma automática e a segunda é manualmente.
 
 ### Documentação e Teste de rotas
 Coleção de requisições:<br/>
