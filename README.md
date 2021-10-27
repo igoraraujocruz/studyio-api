@@ -24,7 +24,7 @@
 </p>
 
 <p align="center">
-  <a href="#-sobre-o-projeto">Sobre o Projeto</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#%EF%B8%8F-sobre-o-projeto">Sobre o Projeto</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#-tecnologias">Tecnologias</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#-como-começar">Como começar</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#-license">License</a>
@@ -34,7 +34,7 @@
   <a href="https://insomnia.rest/run/?label=studyio-api&uri=https%3A%2F%2Fraw.githubusercontent.com%2Figoraraujocruz%2Fstudyio-api%2Fmaster%2Finsomnia.json" target="_blank"><img src="https://insomnia.rest/images/run.svg" alt="Run in Insomnia"></a>
 </p>
 
-## Sobre o projeto
+## 💇🏻‍♂️ Sobre o projeto
 
 API para criar, editar, deletar e buscar usuários, módulos e aulas cadastradas.
 
