@@ -11,13 +11,13 @@ export class LessonsController {
         request: Request,
         response: Response,
     ): Promise<Response> {
-        const { name, date, moduleId, description } = request.body;
+        const { name, date, moduleName, description } = request.body;
 
         const createLesson = container.resolve(CreateLessonService);
 
         const lesson = await createLesson.execute({
             name,
-            moduleId,
+            moduleName,
             date,
             description,
         });
@@ -42,7 +42,7 @@ export class LessonsController {
     public async update(request: Request, response: Response): Promise<Response> {
         try {
 
-          const { id, name, date, moduleId, description } = request.body;
+          const { id, name, date, moduleName, description } = request.body;
 
           const updateLesson = container.resolve(UpdateLessonService);
 
@@ -50,7 +50,7 @@ export class LessonsController {
               id,
               name,
               date,
-              moduleId,
+              moduleName,
               description,
           });
 

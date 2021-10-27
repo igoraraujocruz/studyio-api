@@ -1,7 +1,7 @@
 export interface UpdateLessonDTO {
     id: string;
     name: string;
-    moduleId: string;
+    moduleName: string;
     date: Date;
     description: string;
 }

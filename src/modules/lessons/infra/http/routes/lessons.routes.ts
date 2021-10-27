@@ -13,8 +13,8 @@ lessonsRouter.post(
         [Segments.BODY]: {
             name: Joi.string().required(),
             date: Joi.date().required(),
-            moduleId: Joi.string().required(),
-            description: Joi.string(),
+            moduleName: Joi.string().required(),
+            description: Joi.string().optional().allow(''),
         },
     }),
     lessonsController.create,
@@ -32,15 +32,15 @@ lessonsRouter.delete(
 );
 
 lessonsRouter.put(
-    '/',
+    '/:id',
     ensureAuthenticated,
     celebrate({
       [Segments.BODY]: {
         id: Joi.string().uuid().required(),
         name: Joi.string().required(),
         date: Joi.date().required(),
-        moduleId: Joi.string().required(),
-        description: Joi.string(),
+        moduleName: Joi.string().required(),
+        description: Joi.string().optional().allow(''),
       },
     }),
     lessonsController.update,

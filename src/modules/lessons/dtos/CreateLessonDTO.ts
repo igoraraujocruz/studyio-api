@@ -1,6 +1,6 @@
 export interface CreateLessonDTO {
     name: string;
-    moduleId: string;
+    moduleName: string;
     date: Date;
     description?: string;
 }

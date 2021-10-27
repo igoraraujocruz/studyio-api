@@ -12,7 +12,7 @@ modulesRouter.post(
     celebrate({
         [Segments.BODY]: {
             name: Joi.string().required(),
-            description: Joi.string(),
+            description: Joi.string().optional().allow(''),
         },
     }),
     modulesController.create,
