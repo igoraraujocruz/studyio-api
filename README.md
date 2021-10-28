@@ -89,14 +89,19 @@ $ git clone https://github.com/igoraraujocruz/studyio-api && cd studyio-api
 ```bash
 
 # Set as variáveis de ambiente
-na raiz do projeto, crie um arquivo ".env" e copie as informações do arquivo ".env.exemple"
+na raiz do projeto, crie um arquivo com o nome ".env" e copie as informações do arquivo ".env.exemple"
+(O arquivo pode estar oculto)
 
 #Depois, execute o comando:
 $ docker-compose up -d
+(caso esteja utilizando Linux e o sistema pedir permissão, acrescente "sudo" antes do comando)
 # Este comando criará o ambiente para execução do servidor.
 
+# Instale as dependências, executando:
+$ yarn
+
 #Após o comando anterior finalizado, execute o seguinte:
-$ yarn typeorm:migration:run
+$ yarn typeorm migration:run
 
 # Esse comando executará todas as migrations, criando as tabelas e relacionamentos necessários.
 
