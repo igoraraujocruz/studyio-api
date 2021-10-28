@@ -60,75 +60,45 @@ Tecnologias que foram usadas para desenvolver esta API:
 - [Commitizen](https://github.com/commitizen/cz-cli)
 - [Eslint](https://eslint.org/)
 - [Prettier](https://prettier.io/)
-- [EditorConfig](https://editorconfig.org/)
+- [EditorConfig](https://editorconfig.org/)<br /><br />
+
+## Documentação
+[StudyIo-docs](http://localhost:3333/api-docs/) <br /><br /><br />
+
+## Coleção de Requisições do Insomnia
+Coleção de requisições:<br/>
+Importe o arquivo `Insomnia.json` na aplicação do Insomnia ou clique no botão [Run in Insomnia](#insomniaButton) <br/><br /><br />
 
 ## 💻 Como começar
-Há duas formas de instalar tudo que é necessário para o projeto. A primeira de forma automática e a segunda é manualmente.
 
-### Documentação e Teste de rotas
-Coleção de requisições:<br/>
-Importe o arquivo `Insomnia.json` na aplicação do Insomnia ou clique no botão [Run in Insomnia](#insomniaButton) <br/>
-Documentação: [StudyIo-docs](http://localhost:3333/api-docs/)
 
 ### Pré-Requisitos
 
 - [Node.js](https://nodejs.org/en/)
 - [Yarn](https://classic.yarnpkg.com/) ou [npm](https://www.npmjs.com/)
-- Uma Instancia de [PostgreSQL](https://www.postgresql.org/)
-
-> Obs.: Eu recomendo utilizar o Docker
-
-# Clone o projeto e acesse a pasta
+- Antes de começar é necessário ter instalado em sua máquina o [Docker-compose](https://docs.docker.com/compose/install/) para buidar as imagens que a aplicação necessita.
+</br><br /><br />
+## Clone o projeto e acesse a pasta
 
 ```bash
 $ git clone https://github.com/igoraraujocruz/studyio-api && cd studyio-api
 ```
-# Como começar: Automático
+
+## Com o docker-compose instalado e com o terminal na raiz do projeto, execute os seguintes comandos:
 
 ```bash
-# Instale todas as dependencias com o comando
-$ yarn
 
-# Faça uma cópia do arquivo '.env.example' e renomeie a cópia para '.env'.
-# Set suas variáveis de ambiente
-$ cp .env.example .env
+# Set as variáveis de ambiente
+na raiz do projeto, crie um arquivo ".env" e copie as informações do arquivo ".env.exemple"
 
-# Crie a instancia do postgres usando docker
-$ docker run --name studyio-postgres -e POSTGRES_USER=docker \
-              -e POSTGRES_DB=studyio -e POSTGRES_PASSWORD=docker \
-              -p 5432:5432 -d postgres
+#Depois, execute o comando:
+$ docker-compose up -d
+# Este comando criará o ambiente para execução do servidor.
 
-# Com a instancia do postgres criada, execute as migrations
-$ yarn typeorm migration:run
+#Após o comando anterior finalizado, execute o seguinte:
+$ yarn typeorm:migration:run
 
-# Execute o comando para inicializar o server
-$ yarn dev:server
-
-# Fim!
-```
-
-
-
-# Como começar: Manual
-
-```bash
-# Instale todas as dependencias com o comando
-$ yarn
-
-# Faça uma cópia do arquivo '.env.example' e renomeie a cópia para '.env'.
-# Set suas variáveis de ambiente
-$ cp .env.example .env
-
-# Crie a instancia do postgres usando docker
-$ docker run --name studyio-postgres -e POSTGRES_USER=docker \
-              -e POSTGRES_DB=studyio -e POSTGRES_PASSWORD=docker \
-              -p 5432:5432 -d postgres
-
-# Com a instancia do postgres criada, execute as migrations
-$ yarn typeorm migration:run
-
-# Execute o comando para inicializar o server
-$ yarn dev:server
+# Esse comando executará todas as migrations, criando as tabelas e relacionamentos necessários.
 
 # Fim!
 ```

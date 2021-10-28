@@ -13,14 +13,6 @@ services:
       - pgdata:/data/postgres
     ports:
       - ${POSTGRESQL_PORT}:5432
-
- migrations:
-    build: .
-    command: yarn typeorm migration:run
-    container_name: migrations
-    depends_on:
-     - database
-
  app:
   build: .
   container_name: studyio
@@ -33,7 +25,6 @@ services:
    - database
   depends_on:
    - database
-   - migrations
 
 volumes:
  pgdata:
