@@ -26,8 +26,8 @@
 <p align="center">
   <a href="#%EF%B8%8F-sobre-o-projeto">Sobre o Projeto</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#-tecnologias">Tecnologias</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#-documentação">Documentação</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#-coleção-de-requisições-do-insomnia">Documentação</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-doc">Documentação</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-insomnia">Coleção de Requisições do Insomnia</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#-como-começar">Como começar</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#-license">License</a>
 </p>
@@ -64,9 +64,11 @@ Tecnologias que foram usadas para desenvolver esta API:
 - [Prettier](https://prettier.io/)
 - [EditorConfig](https://editorconfig.org/)<br /><br />
 
+<a id="doc"></a>
 ## Documentação
 [StudyIo-docs](http://localhost:3333/api-docs/) <br /><br /><br />
 
+<a id ="insomnia"></a>
 ## Coleção de Requisições do Insomnia
 Coleção de requisições:<br/>
 Importe o arquivo `Insomnia.json` na aplicação do Insomnia ou clique no botão [Run in Insomnia](#insomniaButton) <br/><br /><br />
