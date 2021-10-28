@@ -1,0 +1,41 @@
+version: "3.7"
+
+services:
+ database:
+    image: postgres:13.2-alpine
+    container_name: postgres
+    restart: always
+    environment:
+     POSTGRES_USER: ${POSTGRESQL_USERNAME}
+     POSTGRES_PASSWORD: ${POSTGRESQL_PASSWORD}
+     POSTGRES_DB: ${POSTGRESQL_DATABASE}
+    volumes:
+      - pgdata:/data/postgres
+    ports:
+      - ${POSTGRESQL_PORT}:5432
+
+ migrations:
+    build: .
+    command: yarn typeorm migration:run
+    container_name: migrations
+    depends_on:
+     - database
+
+ app:
+  build: .
+  container_name: studyio
+  restart: always
+  ports:
+   - ${APP_PORT}:${APP_PORT}
+  volumes:
+   - .:/usr/app
+  links:
+   - database
+  depends_on:
+   - database
+   - migrations
+
+volumes:
+ pgdata:
+  driver: local
+
