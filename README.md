@@ -29,6 +29,7 @@
   <a href="#-doc">Documentação</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#-insomnia">Coleção de Requisições do Insomnia</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#-como-começar">Como começar</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-usuario-administrativo">Como criar um usuário administrativo</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#-license">License</a>
 </p>
 
@@ -113,6 +114,16 @@ $ yarn typeorm migration:run
 
 # Fim!
 ```
+
+## Como criar um Usuário Administrativo
+
+
+Com o a aplicação online, acesse a [documentação](http://localhost:3333/api-docs/) ou [Use a coleção de requisições do Insomnia](#insomniaButton)<br />
+Na aba de Users, envie a requisição.<br />
+Obtendo sucesso, é possível acessar o painel administrativo.
+<br /><br />
+
+
 
 ## 📝 License
 
