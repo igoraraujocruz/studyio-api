@@ -59,6 +59,8 @@ Tecnologias que foram usadas para desenvolver esta API:
 - [Swagger](https://swagger.io/)
 - [Husky](https://github.com/typicode/husky)
 - [Lint-staged](https://github.com/okonet/lint-staged)
+- [Commitlint](https://github.com/conventional-changelog/commitlint)
+- [Commitizen](https://github.com/commitizen/cz-cli)
 - [Cross-env](https://github.com/kentcdodds/cross-env)
 - [Eslint](https://eslint.org/)
 - [Prettier](https://prettier.io/)
