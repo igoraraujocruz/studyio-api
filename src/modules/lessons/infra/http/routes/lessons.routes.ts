@@ -35,15 +35,15 @@ lessonsRouter.put(
     '/:id',
     ensureAuthenticated,
     celebrate({
-      [Segments.PARAMS]: {
-        id: Joi.string().uuid().required(),
-      },
-      [Segments.BODY]: {
-        name: Joi.string().required(),
-        date: Joi.date().required(),
-        moduleName: Joi.string().required(),
-        description: Joi.string().optional().allow(''),
-      },
+        [Segments.PARAMS]: {
+            id: Joi.string().uuid().required(),
+        },
+        [Segments.BODY]: {
+            name: Joi.string().required(),
+            date: Joi.date().required(),
+            moduleName: Joi.string().required(),
+            description: Joi.string().optional().allow(''),
+        },
     }),
     lessonsController.update,
 );
@@ -51,9 +51,9 @@ lessonsRouter.put(
 lessonsRouter.get(
     '/:id?',
     celebrate({
-      [Segments.PARAMS]: {
-        id: Joi.string().uuid(),
-      },
+        [Segments.PARAMS]: {
+            id: Joi.string().uuid(),
+        },
     }),
     lessonsController.list,
-);;
+);

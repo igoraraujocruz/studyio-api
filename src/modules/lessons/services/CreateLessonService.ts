@@ -19,10 +19,9 @@ export class CreateLessonService {
         name,
         date,
         moduleName,
-        description
+        description,
     }: CreateLessonDTO): Promise<Lesson> {
-
-        const module = await this.modulesRepository.findByName(moduleName)
+        const module = await this.modulesRepository.findByName(moduleName);
 
         if (!module) {
             throw new AppError('module not found');
@@ -32,7 +31,7 @@ export class CreateLessonService {
             name,
             date,
             moduleId: module.id,
-            description
+            description,
         });
 
         return lesson;

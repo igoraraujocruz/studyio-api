@@ -8,47 +8,40 @@ import { IModulesRepository } from '@modules/modules/repositories/IModulesReposi
 
 @injectable()
 export class UpdateLessonService extends BaseService<Lesson> {
-  constructor(
-    @inject('LessonsRepository')
-    private lessonsRepository: ILessonsRepository,
+    constructor(
+        @inject('LessonsRepository')
+        private lessonsRepository: ILessonsRepository,
 
-    @inject('ModulesRepository')
-    private modulesRepository: IModulesRepository,
-  ) {
-    super(lessonsRepository);
-  }
-
-  public async update({
-    id,
-    name,
-    date,
-    description,
-    moduleName
-  }: UpdateLessonDTO): Promise<Lesson> {
-
-    const lesson = await this.lessonsRepository.findById(id);
-
-    if (!lesson) {
-      throw new AppError('Lesson not found');
+        @inject('ModulesRepository')
+        private modulesRepository: IModulesRepository,
+    ) {
+        super(lessonsRepository);
     }
 
-    const lessonExist = await this.lessonsRepository.findByName(name);
+    public async update({
+        id,
+        name,
+        date,
+        description,
+        moduleName,
+    }: UpdateLessonDTO): Promise<Lesson> {
+        const lesson = await this.lessonsRepository.findById(id);
 
-    if(lessonExist) {
-        throw new AppError('This lesson name is already in use');
+        if (!lesson) {
+            throw new AppError('Lesson not found');
+        }
+
+        const module = await this.modulesRepository.findByName(moduleName);
+
+        if (!module) {
+            throw new AppError('Module not found');
+        }
+
+        lesson.name = name;
+        lesson.date = date;
+        lesson.description = description;
+        lesson.moduleId = module.id;
+
+        return this.lessonsRepository.save(lesson);
     }
-
-    const module = await this.modulesRepository.findByName(moduleName)
-
-    if (!module) {
-        throw new AppError('Module not found')
-    }
-
-    lesson.name = name;
-    lesson.date = date;
-    lesson.description = description;
-    lesson.moduleId = module.id;
-
-    return this.lessonsRepository.save(lesson);
-  }
 }

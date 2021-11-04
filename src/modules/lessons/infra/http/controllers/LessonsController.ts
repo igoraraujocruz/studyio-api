@@ -25,46 +25,48 @@ export class LessonsController {
         return response.status(200).json(classToClass(lesson));
     }
 
-    public async remove(request: Request, response: Response): Promise<Response> {
+    public async remove(
+        request: Request,
+        response: Response,
+    ): Promise<Response> {
         try {
-          const { id } = request.params;
+            const { id } = request.params;
 
-          const deleteLesson = container.resolve(DeleteLessonService);
+            const deleteLesson = container.resolve(DeleteLessonService);
 
-          const lessonDeleted = await deleteLesson.delete(id);
+            const lessonDeleted = await deleteLesson.delete(id);
 
-          return response.json(classToClass(lessonDeleted));
+            return response.json(classToClass(lessonDeleted));
         } catch (error) {
-          return response.status(400).json({ error });
+            return response.status(400).json({ error });
         }
     }
 
-    public async update(request: Request, response: Response): Promise<Response> {
-        try {
+    public async update(
+        request: Request,
+        response: Response,
+    ): Promise<Response> {
+        const { id } = request.params;
+        const { name, date, moduleName, description } = request.body;
 
-          const { id, name, date, moduleName, description } = request.body;
+        const updateLesson = container.resolve(UpdateLessonService);
 
-          const updateLesson = container.resolve(UpdateLessonService);
+        const lessonUpdated = await updateLesson.update({
+            id,
+            name,
+            date,
+            moduleName,
+            description,
+        });
 
-          const lessonUpdated = await updateLesson.update({
-              id,
-              name,
-              date,
-              moduleName,
-              description,
-          });
-
-          return response.json(classToClass(lessonUpdated));
-        } catch (error) {
-          return response.status(400).json({ error });
-        }
+        return response.json(classToClass(lessonUpdated));
     }
 
     public async list(request: Request, response: Response): Promise<Response> {
         const { id } = request.params;
-        const listLessons = container.resolve(ListLessonsServices)
+        const listLessons = container.resolve(ListLessonsServices);
         const lessons = await listLessons.execute(id);
 
         return response.json(classToClass(lessons));
-      }
+    }
 }
