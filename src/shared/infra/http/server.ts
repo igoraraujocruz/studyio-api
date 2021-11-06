@@ -13,10 +13,12 @@ import swaggerFile from '../../../../swagger.json';
 
 const app = express();
 app.use(express.json());
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerFile))
-app.use(cors({
-    origin: 'http://localhost:3000'
-}))
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerFile));
+app.use(
+    cors({
+        origin: 'http://localhost:3000',
+    }),
+);
 app.use(routes);
 
 app.use((error: Error, _: Request, response: Response, __: NextFunction) => {

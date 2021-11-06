@@ -7,37 +7,37 @@ import { AppError } from '@shared/errors/AppError';
 
 @injectable()
 export class UpdateUserService extends BaseService<User> {
-  constructor(
-    @inject('UsersRepository')
-    private usersRepository: IUsersRepository,
-  ) {
-    super(usersRepository);
-  }
-
-  public async update({
-    id,
-    name,
-    email,
-    password,
-  }: UpdateUserDTO): Promise<User> {
-
-    const user = await this.usersRepository.findById(id);
-
-    if (!user) {
-      throw new AppError('User not found');
+    constructor(
+        @inject('UsersRepository')
+        private usersRepository: IUsersRepository,
+    ) {
+        super(usersRepository);
     }
 
-    const userWithUpdatedEmail = await this.usersRepository.findByEmail(email);
+    public async execute({
+        id,
+        name,
+        email,
+        password,
+    }: UpdateUserDTO): Promise<User> {
+        const user = await this.usersRepository.findById(id);
 
-    if (userWithUpdatedEmail && userWithUpdatedEmail.id !== user.id) {
-      throw new AppError('E-mail is already in use');
+        if (!user) {
+            throw new AppError('User not found');
+        }
+
+        const userWithUpdatedEmail = await this.usersRepository.findByEmail(
+            email,
+        );
+
+        if (userWithUpdatedEmail && userWithUpdatedEmail.id !== user.id) {
+            throw new AppError('E-mail is already in use');
+        }
+
+        user.name = name;
+        user.email = email;
+        user.password = password;
+
+        return this.usersRepository.save(user);
     }
-
-    user.name = name;
-    user.email = email;
-    user.password = password;
-
-
-    return this.usersRepository.save(user);
-  }
 }

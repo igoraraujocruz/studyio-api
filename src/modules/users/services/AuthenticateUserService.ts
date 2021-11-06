@@ -1,48 +1,54 @@
-import { getRepository } from 'typeorm';
-import { compare } from 'bcryptjs';
-import { AppError } from '@shared/errors/AppError';
-import { User } from '@modules/users/infra/typeorm/entities/User';
 import { sign } from 'jsonwebtoken';
-import authConfig from '@config/auth';
+import { User } from '@modules/users/infra/typeorm/entities/User';
+import auth from '@config/auth';
+import { IUsersRepository } from '@modules/users/repositories/IUsersRepository';
+import { AppError } from '@shared/errors/AppError';
+import { IHashProvider } from '@modules/users/providers/HashProvider/models/IHashProvider';
+import { injectable, inject } from 'tsyringe';
 
-
-interface Request {
-	email: string;
-	password: string;
+interface IRequest {
+    email: string;
+    password: string;
 }
-
-interface Response {
-	user: User;
-    token: string;
-}
-
+@injectable()
 export class AuthenticateUserService {
-	public async execute({ email, password }: Request): Promise<Response> {
-		const usersRepository = getRepository(User);
+    constructor(
+        @inject('UserRepository')
+        private usersRepository: IUsersRepository,
 
-		const user = await usersRepository.findOne({
-			where: { email }
-		});
-		if (!user) {
-			throw new AppError('name or password invalid.');
-		};
+        @inject('HashProvider')
+        private hashProvider: IHashProvider,
+    ) {}
 
-		const passwordMatched = await compare(password, user.password);
+    public async execute({
+        email,
+        password,
+    }: IRequest): Promise<{ user: User; token: string }> {
+        const user = await this.usersRepository.findByEmail(email);
+
+        if (!user) {
+            throw new AppError('Incorrect email/password combination', 401);
+        }
+
+        const passwordMatched = await this.hashProvider.compareHash(
+            password,
+            user.password,
+        );
 
         if (!passwordMatched) {
-			throw new AppError('name or password invalid.');
-		};
+            throw new AppError('Incorrect email/password combination', 401);
+        }
 
-        const { secret, expiresIn } = authConfig.jwt;
+        const { secret, expiresIn } = auth.jwt;
 
         const token = sign({}, secret, {
-			subject: user.id,
-			expiresIn: expiresIn
-		});
+            subject: user.id,
+            expiresIn,
+        });
 
-		return {
-			user,
-            token
-		};
-	}
+        return {
+            user,
+            token,
+        };
+    }
 }

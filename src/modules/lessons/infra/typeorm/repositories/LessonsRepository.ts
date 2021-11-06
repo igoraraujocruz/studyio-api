@@ -3,7 +3,10 @@ import { ILessonsRepository } from '@modules/lessons/repositories/ILessonsReposi
 import BaseRepository from '@shared/infra/typeorm/repositories/BaseRepository';
 import { Lesson } from '@modules/lessons/infra/typeorm/entities/Lesson';
 
-export class LessonsRepository extends BaseRepository<Lesson> implements ILessonsRepository {
+export class LessonsRepository
+    extends BaseRepository<Lesson>
+    implements ILessonsRepository
+{
     readonly ormRepository: Repository<Lesson>;
 
     constructor() {
@@ -20,7 +23,7 @@ export class LessonsRepository extends BaseRepository<Lesson> implements ILesson
         return item;
     }
 
-     public async findByModule(moduleId: string): Promise<Lesson[] | undefined> {
+    public async findByModule(moduleId: string): Promise<Lesson[] | undefined> {
         const item = this.ormRepository.find({
             where: { moduleId },
         });

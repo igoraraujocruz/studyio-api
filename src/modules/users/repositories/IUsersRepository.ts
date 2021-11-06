@@ -2,6 +2,6 @@ import { User } from '@modules/users/infra/typeorm/entities/User';
 import { IBaseRepository } from '@shared/repositories/IBaseRepository';
 
 export interface IUsersRepository extends IBaseRepository<User> {
-    findByUsername(username: string): Promise<User | undefined>
-    findByEmail(email: string): Promise<User | undefined>
+    findByUsername(username: string): Promise<User | undefined>;
+    findByEmail(email: string): Promise<User | undefined>;
 }

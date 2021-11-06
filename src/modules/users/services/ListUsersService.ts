@@ -6,27 +6,26 @@ import { AppError } from '@shared/errors/AppError';
 
 @injectable()
 export class ListUsersService extends BaseService<User> {
-  constructor(
-    @inject('UsersRepository')
-    private usersRepository: IUsersRepository,
-  ) {
-    super(usersRepository);
-  }
-
-  public async execute(id?: string): Promise<User | User[]> {
-
-    if(id) {
-       const user = await this.usersRepository.findById(id)
-
-       if (!user) {
-           throw new AppError('User not found')
-       }
-
-       return user;
+    constructor(
+        @inject('UsersRepository')
+        private usersRepository: IUsersRepository,
+    ) {
+        super(usersRepository);
     }
 
-    const users = await this.usersRepository.findAll()
+    public async execute(id?: string): Promise<User | User[]> {
+        if (id) {
+            const user = await this.usersRepository.findById(id);
 
-    return users;
-  }
+            if (!user) {
+                throw new AppError('User not found');
+            }
+
+            return user;
+        }
+
+        const users = await this.usersRepository.findAll();
+
+        return users;
+    }
 }

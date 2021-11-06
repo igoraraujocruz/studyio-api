@@ -6,7 +6,7 @@ import {
     UpdateDateColumn,
     DeleteDateColumn,
     ManyToOne,
-    JoinColumn
+    JoinColumn,
 } from 'typeorm';
 import { Exclude } from 'class-transformer';
 import { Module } from '@modules/modules/infra/typeorm/entities/Module';

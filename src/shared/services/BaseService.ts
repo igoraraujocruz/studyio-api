@@ -29,33 +29,33 @@ export abstract class BaseService<Entity extends IStandardProps>
         return entity;
     }
 
-    async update(item_request: Partial<Entity>): Promise<Entity> {
-        const item = await this.ormRepository.update(item_request);
+    async update(itemRequest: Partial<Entity>): Promise<Entity> {
+        const item = await this.ormRepository.update(itemRequest);
 
         if (!item) {
-          throw new AppError('Item not found.');
+            throw new AppError('Item not found.');
         }
 
         return item;
     }
 
-    async delete(item_id: string): Promise<void> {
-        const item = await this.ormRepository.findById(item_id);
+    async delete(itemId: string): Promise<void> {
+        const item = await this.ormRepository.findById(itemId);
 
         if (!item) {
-          throw new AppError('Item not found.');
+            throw new AppError('Item not found.');
         }
 
         await this.ormRepository.delete(item);
     }
 
-    public async findById(item_id: string): Promise<Entity> {
-        const item_to_list = await this.ormRepository.findById(item_id);
+    public async findById(itemId: string): Promise<Entity> {
+        const itemToList = await this.ormRepository.findById(itemId);
 
-        if (!item_to_list) {
-          throw new AppError('Item not found.');
+        if (!itemToList) {
+            throw new AppError('Item not found.');
         }
 
-        return item_to_list;
+        return itemToList;
     }
 }

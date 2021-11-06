@@ -18,7 +18,7 @@ export class UpdateLessonService extends BaseService<Lesson> {
         super(lessonsRepository);
     }
 
-    public async update({
+    public async execute({
         id,
         name,
         date,

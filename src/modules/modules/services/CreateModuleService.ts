@@ -13,18 +13,17 @@ export class CreateModuleService {
 
     public async execute({
         name,
-        description
+        description,
     }: CreateModuleDTO): Promise<Module> {
+        const moduleExist = await this.modulesRepository.findByName(name);
 
-        const moduleExist = await this.modulesRepository.findByName(name)
-
-        if(moduleExist) {
-            throw new AppError('This module already exist')
+        if (moduleExist) {
+            throw new AppError('This module already exist');
         }
 
         const module = await this.modulesRepository.create({
             name,
-            description
+            description,
         });
 
         return module;

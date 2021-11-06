@@ -5,24 +5,23 @@ import { AppError } from '@shared/errors/AppError';
 
 @injectable()
 export class ListLessonsServices {
-  constructor(
-    @inject('LessonsRepository')
-    private lessonsRepository: ILessonsRepository,
-  ) {}
+    constructor(
+        @inject('LessonsRepository')
+        private lessonsRepository: ILessonsRepository,
+    ) {}
 
-  public async execute(id?: string): Promise<Lesson | Lesson[]> {
+    public async execute(id?: string): Promise<Lesson | Lesson[]> {
+        if (id) {
+            const lessons = await this.lessonsRepository.findById(id);
 
-    if(id) {
-       const lessons = await this.lessonsRepository.findById(id)
+            if (!lessons) {
+                throw new AppError('Lesson not found');
+            }
 
-       if (!lessons) {
-           throw new AppError('Lesson not found')
-       }
+            return lessons;
+        }
+        const Alllessons = await this.lessonsRepository.findAll();
 
-       return lessons;
+        return Alllessons;
     }
-    const Alllessons = await this.lessonsRepository.findAll();
-
-    return Alllessons;
-  }
 }

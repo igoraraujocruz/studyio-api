@@ -5,10 +5,10 @@ import { IUsersRepository } from '@modules/users/repositories/IUsersRepository';
 
 @injectable()
 export class DeleteUserService extends BaseService<User> {
-  constructor(
-    @inject('UsersRepository')
-    private usersRepository: IUsersRepository,
-  ) {
-    super(usersRepository);
-  }
+    constructor(
+        @inject('UsersRepository')
+        private usersRepository: IUsersRepository,
+    ) {
+        super(usersRepository);
+    }
 }
