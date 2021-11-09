@@ -1,10 +1,10 @@
 import { MigrationInterface, QueryRunner, Table } from 'typeorm';
 
-export default class ModulesTable1634867792415 implements MigrationInterface {
+export default class UserTokens1636383685278 implements MigrationInterface {
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.createTable(
             new Table({
-                name: 'modules',
+                name: 'usersTokens',
                 columns: [
                     {
                         name: 'id',
@@ -14,13 +14,14 @@ export default class ModulesTable1634867792415 implements MigrationInterface {
                         default: 'uuid_generate_v4()',
                     },
                     {
-                        name: 'name',
-                        type: 'varchar',
+                        name: 'token',
+                        type: 'uuid',
+                        generationStrategy: 'uuid',
+                        default: 'uuid_generate_v4()',
                     },
                     {
-                        name: 'description',
-                        type: 'varchar',
-                        isNullable: true,
+                        name: 'userId',
+                        type: 'uuid',
                     },
                     {
                         name: 'createdAt',
@@ -32,10 +33,15 @@ export default class ModulesTable1634867792415 implements MigrationInterface {
                         type: 'timestamp',
                         default: 'now()',
                     },
+                ],
+                foreignKeys: [
                     {
-                        name: 'deletedAt',
-                        type: 'timestamp',
-                        isNullable: true,
+                        name: 'tokenUser',
+                        referencedTableName: 'users',
+                        referencedColumnNames: ['id'],
+                        columnNames: ['userId'],
+                        onDelete: 'CASCADE',
+                        onUpdate: 'CASCADE',
                     },
                 ],
             }),
@@ -43,6 +49,6 @@ export default class ModulesTable1634867792415 implements MigrationInterface {
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.dropTable('modules');
+        await queryRunner.dropTable('usersTokens');
     }
 }

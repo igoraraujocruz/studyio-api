@@ -6,12 +6,12 @@ export const sessionsRouter = Router();
 const sessionsController = new SessionsController();
 
 sessionsRouter.post(
-  '/',
-  celebrate({
-    [Segments.BODY]: {
-      email: Joi.string().required().email(),
-      password: Joi.string().required(),
-    },
-  }),
-  sessionsController.handle,
+    '/',
+    celebrate({
+        [Segments.BODY]: {
+            email: Joi.string().required().email(),
+            password: Joi.string().required(),
+        },
+    }),
+    sessionsController.handle,
 );

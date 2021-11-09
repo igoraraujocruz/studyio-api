@@ -1,11 +1,9 @@
 import 'reflect-metadata';
 import { UpdateLessonService } from '@modules/lessons/services/UpdateLessonService';
 import { AppError } from '@shared/errors/AppError';
-import { CreateLessonService } from '@modules/lessons/services/CreateLessonService';
 import { FakeModuleRepository } from '../../../tests/unit/modules/fakes/FakeModuleRepository';
 import { FakeLessonRepository } from '../../../tests/unit/lessons/fakes/FakeLessonRepository';
 
-let createLessonService: CreateLessonService;
 let updateLessonService: UpdateLessonService;
 let fakeModuleRepository: FakeModuleRepository;
 let fakeLessonRepository: FakeLessonRepository;
@@ -13,10 +11,7 @@ let fakeLessonRepository: FakeLessonRepository;
 describe('Update Lesson', () => {
     beforeEach(() => {
         fakeModuleRepository = new FakeModuleRepository();
-        createLessonService = new CreateLessonService(
-            fakeLessonRepository,
-            fakeModuleRepository,
-        );
+        fakeLessonRepository = new FakeLessonRepository();
         updateLessonService = new UpdateLessonService(
             fakeLessonRepository,
             fakeModuleRepository,
@@ -29,51 +24,74 @@ describe('Update Lesson', () => {
             description: 'nice',
         });
 
-        const lesson = await createLessonService.execute({
+        const lesson = await fakeLessonRepository.create({
             name: 'Variable',
             description: 'cool',
             date: new Date(),
             moduleName: module.name,
         });
 
-        const name = 'Javascript';
-        const description = 'cool';
         const date = new Date();
 
         const updatedLesson = await updateLessonService.execute({
             id: lesson.id,
-            name,
-            description,
+            name: 'constante',
+            description: 'good',
             date,
             moduleName: module.name,
         });
 
-        expect(updatedLesson).toEqual(name);
-        expect(updatedLesson).toEqual(description);
-        expect(updatedLesson).toEqual(date);
-        expect(updatedLesson).toEqual(module.name);
+        expect(updatedLesson.name).toBe('constante');
+        expect(updatedLesson.description).toBe('good');
+        expect(updatedLesson.date).toBe(date);
+        expect(updatedLesson.moduleId).toBe(lesson.moduleId);
     });
 
-    it('should not be able to update a lesson when an id is not found', async () => {
+    it('Should not be able to update a lesson when not found by id', async () => {
+        const module = await fakeModuleRepository.create({
+            name: 'Python',
+            description: 'nice',
+        });
+
         await expect(
             updateLessonService.execute({
-                id: 'd9a4da84d9da84',
-                name: 'Variable',
-                description: 'cool',
+                id: 'non-existing-lesson-id',
+                name: 'Javascript',
                 date: new Date(),
-                moduleName: 'Python',
+                moduleName: module.name,
+                description: 'teste',
             }),
         ).rejects.toBeInstanceOf(AppError);
     });
 
-    it('Should not be able if module is not found', async () => {
+    it('Should not be able to update a lesson when module is not found by id', async () => {
+        const module = await fakeModuleRepository.create({
+            name: 'Python',
+            description: 'nice',
+        });
+
+        const lesson = await fakeLessonRepository.create({
+            name: 'Variable',
+            description: 'cool',
+            date: new Date(),
+            moduleName: module.name,
+        });
+
+        const updatedLesson = await updateLessonService.execute({
+            id: lesson.id,
+            name: 'constante',
+            description: 'good',
+            date: new Date(),
+            moduleName: module.name,
+        });
+
         await expect(
             updateLessonService.execute({
-                id: 'd9a4da84d9da84',
-                name: 'Variable',
-                description: 'cool',
+                id: updatedLesson.id,
+                name: 'Javascript',
                 date: new Date(),
-                moduleName: 'Python',
+                moduleName: 'undefined',
+                description: 'teste',
             }),
         ).rejects.toBeInstanceOf(AppError);
     });

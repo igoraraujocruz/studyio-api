@@ -3,7 +3,10 @@ import { IUsersRepository } from '@modules/users/repositories/IUsersRepository';
 import BaseRepository from '@shared/infra/typeorm/repositories/BaseRepository';
 import { User } from '@modules/users/infra/typeorm/entities/User';
 
-export class UsersRepository extends BaseRepository<User> implements IUsersRepository {
+export class UsersRepository
+    extends BaseRepository<User>
+    implements IUsersRepository
+{
     readonly ormRepository: Repository<User>;
 
     constructor() {

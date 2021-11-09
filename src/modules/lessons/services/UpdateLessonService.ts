@@ -37,10 +37,7 @@ export class UpdateLessonService extends BaseService<Lesson> {
             throw new AppError('Module not found');
         }
 
-        lesson.name = name;
-        lesson.date = date;
-        lesson.description = description;
-        lesson.moduleId = module.id;
+        Object.assign(lesson, { name, date, description, moduleName });
 
         return this.lessonsRepository.save(lesson);
     }

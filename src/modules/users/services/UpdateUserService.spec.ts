@@ -51,6 +51,12 @@ describe('Update User', () => {
     it('Sould not be able if user email is already in use', async () => {
         const email = 'johndoe@example.com';
 
+        await fakeUserRepository.create({
+            name: 'Jonathan',
+            email,
+            password: '123456',
+        });
+
         const user = await fakeUserRepository.create({
             name: 'John Doe',
             email,

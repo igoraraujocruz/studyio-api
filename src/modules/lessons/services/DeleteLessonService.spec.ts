@@ -11,6 +11,7 @@ let fakeModuleRepository: FakeModuleRepository;
 
 describe('Delete User', () => {
     beforeEach(() => {
+        fakeModuleRepository = new FakeModuleRepository();
         fakeLessonRepository = new FakeLessonRepository();
         createLessonService = new CreateLessonService(
             fakeLessonRepository,
