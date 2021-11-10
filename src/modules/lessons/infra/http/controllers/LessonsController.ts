@@ -51,7 +51,7 @@ export class LessonsController {
 
         const updateLesson = container.resolve(UpdateLessonService);
 
-        const lessonUpdated = await updateLesson.update({
+        const lessonUpdated = await updateLesson.execute({
             id,
             name,
             date,
