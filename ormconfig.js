@@ -3,6 +3,7 @@ const file = process.env.NODE_ENV === 'dev' ? 'ts' : 'js';
 
 module.exports = {
     type: "postgres",
+    url: process.env.DATABASE_URL,
     host: process.env.POSTGRESQL_HOST,
     port: Number(process.env.POSTGRESQL_PORT),
     username: process.env.POSTGRESQL_USERNAME,
