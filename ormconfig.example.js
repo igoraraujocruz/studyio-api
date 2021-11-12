@@ -6,10 +6,10 @@ module.exports = {
     password: process.env.POSTGRESQL_PASSWORD,
     database: process.env.POSTGRESQL_DATABASE,
     entities: [
-        `./src/modules/**/infra/typeorm/entities/*.js`
+        `./src/modules/**/infra/typeorm/entities/*.ts`
     ],
     migrations: [
-        `./src/shared/infra/typeorm/migrations/*.js`
+        `./src/shared/infra/typeorm/migrations/*.ts`
     ],
     cli: {
         "migrationsDir": `./src/shared/infra/typeorm/migrations/`
