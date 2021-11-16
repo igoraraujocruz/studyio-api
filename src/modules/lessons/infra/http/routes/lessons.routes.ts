@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { celebrate, Segments, Joi } from 'celebrate';
-import { ensureAuthenticated } from '@modules/users/infra/http/middlewares/ensureAuthenticated';
+import { ensureAuthenticated } from '@shared/infra/http/middlewares/ensureAuthenticated';
 import { LessonsController } from '@modules/lessons/infra/http/controllers/LessonsController';
 
 export const lessonsRouter = Router();

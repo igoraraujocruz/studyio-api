@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import { celebrate, Segments, Joi } from 'celebrate';
 import { UsersController } from '@modules/users/infra/http/controllers/UsersController';
-import { ensureAuthenticated } from '../middlewares/ensureAuthenticated';
+import { ensureAuthenticated } from '../../../../../shared/infra/http/middlewares/ensureAuthenticated';
 
 export const usersRouter = Router();
 const usersController = new UsersController();
@@ -33,14 +33,14 @@ usersRouter.put(
     '/:id',
     ensureAuthenticated,
     celebrate({
-      [Segments.PARAMS]: {
-        id: Joi.string().uuid().required()
-      },
-      [Segments.BODY]: {
-        name: Joi.string().required(),
-        email: Joi.string().email().required(),
-        password: Joi.string().min(5).required(),
-      },
+        [Segments.PARAMS]: {
+            id: Joi.string().uuid().required(),
+        },
+        [Segments.BODY]: {
+            name: Joi.string().required(),
+            email: Joi.string().email().required(),
+            password: Joi.string().min(5).required(),
+        },
     }),
     usersController.update,
 );
@@ -49,9 +49,9 @@ usersRouter.get(
     '/:id?',
     ensureAuthenticated,
     celebrate({
-      [Segments.PARAMS]: {
-        id: Joi.string().uuid(),
-      },
+        [Segments.PARAMS]: {
+            id: Joi.string().uuid(),
+        },
     }),
     usersController.list,
 );

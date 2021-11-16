@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { celebrate, Segments, Joi } from 'celebrate';
-import { ensureAuthenticated } from '@modules/users/infra/http/middlewares/ensureAuthenticated';
+import { ensureAuthenticated } from '@shared/infra/http/middlewares/ensureAuthenticated';
 import { ModulesController } from '@modules/modules/infra/http/controllers/ModulesController';
 
 export const modulesRouter = Router();
@@ -33,13 +33,13 @@ modulesRouter.put(
     '/:id',
     ensureAuthenticated,
     celebrate({
-      [Segments.PARAMS]: {
-        id: Joi.string().uuid().required(),
-      },
-      [Segments.BODY]: {
-        name: Joi.string().required(),
-        description: Joi.string().optional().allow(''),
-      },
+        [Segments.PARAMS]: {
+            id: Joi.string().uuid().required(),
+        },
+        [Segments.BODY]: {
+            name: Joi.string().required(),
+            description: Joi.string().optional().allow(''),
+        },
     }),
     modulesController.update,
 );
@@ -47,9 +47,9 @@ modulesRouter.put(
 modulesRouter.get(
     '/:id?',
     celebrate({
-      [Segments.PARAMS]: {
-        id: Joi.string().uuid(),
-      },
+        [Segments.PARAMS]: {
+            id: Joi.string().uuid(),
+        },
     }),
     modulesController.list,
 );
