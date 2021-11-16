@@ -1,6 +1,6 @@
 import { createConnection, getConnectionOptions } from 'typeorm';
 
-const host = process.env.NODE_ENV === 'prod' ? 'database' : 'localhost';
+const host = process.env.NODE_ENV === 'dev' ? 'database' : 'localhost';
 
 interface IOptions {
     host: string;
