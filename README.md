@@ -65,7 +65,9 @@ Tecnologias que foram usadas para desenvolver esta API:
 - [Cross-env](https://github.com/kentcdodds/cross-env)
 - [Eslint](https://eslint.org/)
 - [Prettier](https://prettier.io/)
-- [EditorConfig](https://editorconfig.org/)<br /><br />
+- [EditorConfig](https://editorconfig.org/)
+- [Sentry](https://sentry.io/)
+- [Rate-limiter-flexible](https://github.com/animir/node-rate-limiter-flexible)<br /><br />
 
 <a id="doc"></a>
 ## Documentação
@@ -96,8 +98,13 @@ $ git clone https://github.com/igoraraujocruz/studyio-api && cd studyio-api
 ```bash
 
 # Set as variáveis de ambiente
-na raiz do projeto, crie um arquivo com o nome ".env" e copie as informações do arquivo ".env.exemple"
+na raiz do projeto, copie as informações do arquivo ".env.example", crie um arquivo chamado ".env", cole as informações e o preencha.
 (O arquivo pode estar oculto)
+Utilizando docker-compose o ambiente será criado automáticamente, não é necessário criar um banco de dados, ou usuário antes, apenas preenchendo o arquivo .env com as informações de sua preferência, automaticamente o docker-compose criará um ambiente com todas as informações já preenchidas no .env.
+
+#Faça a conexão com o banco:
+na raiz do projeto, copie o arquivo "ormconfig.example.js" e crie um novo com o nome "ormconfig.js".
+(No ambiente de desenvolvimento/teste não é necessário nenhuma alteração).
 
 #Depois, execute o comando:
 $ docker-compose up -d
@@ -113,6 +120,34 @@ $ yarn typeorm migration:run
 # Esse comando executará todas as migrations, criando as tabelas e relacionamentos necessários.
 
 # Fim!
+```
+
+## Exemplo de como ficaria o arquivo .env
+
+```bash
+#App
+APP_NAME=StudyIo
+APP_PORT=3333
+APP_SECRET=ad5a1d3a5d416ad6ad03ad51a3d4
+
+# Postgres
+POSTGRESQL_HOST=localhost
+POSTGRESQL_PASSWORD=dasd46a8sda213das
+POSTGRESQL_DATABASE=studyio
+POSTGRESQL_PORT=15432
+POSTGRESQL_USERNAME=admin
+
+#Redis
+REDIS_HOST=redis
+REDIS_PORT=6379
+REDIS_PASSWORD=
+
+#Sentry
+SENTRY_DSN=https://89715f69ce28434f9003ea0a80fded9b@o1070802.ingest.sentry.io/6067155
+~
+~
+~
+
 ```
 
 ## Como criar um Usuário Administrativo
