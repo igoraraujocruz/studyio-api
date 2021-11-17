@@ -1,6 +1,3 @@
-const dir = process.env.NODE_ENV === 'dev' ? 'src' : 'dist';
-const file = process.env.NODE_ENV === 'dev' ? 'ts' : 'js';
-
 module.exports = {
     type: "postgres",
     host: process.env.POSTGRESQL_HOST,
@@ -9,12 +6,12 @@ module.exports = {
     password: process.env.POSTGRESQL_PASSWORD,
     database: process.env.POSTGRESQL_DATABASE,
     entities: [
-        `./${dir}/modules/**/infra/typeorm/entities/*.${file}`
+        `./src/modules/**/infra/typeorm/entities/*.ts`
     ],
     migrations: [
-        `./${dir}/shared/infra/typeorm/migrations/*.${file}`
+        `./src/shared/infra/typeorm/migrations/*.ts`
     ],
     cli: {
-        "migrationsDir": `./${dir}/shared/infra/typeorm/migrations/`
+        "migrationsDir": `./src/shared/infra/typeorm/migrations/`
     }
 }
