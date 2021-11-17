@@ -119,7 +119,12 @@ $ yarn typeorm migration:run
 
 # Esse comando executará todas as migrations, criando as tabelas e relacionamentos necessários.
 
-# Fim!
+#Para iniciar a aplicação, execute:
+$ yarn dev:server
+
+# Tudo ocorrendo bem, receberá as seguintes mensagens no terminal:
+server started!
+Database connected
 ```
 
 ## Exemplo de como ficaria o arquivo .env
